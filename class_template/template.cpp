@@ -13,6 +13,11 @@
  * 2、类模板在模板参数列表中可以有默认参数
  * template<class T = 数据类型>
  * 3、类模板在有默认参数类型的时候，可以发生隐式类型转换
+ * 
+ * 与其他类相同，我们既可以在类模板内部也可以在类模板外部为其定义成员函数，且定义在类模板内的成员函数
+ * 被隐式声明为内联函数。但定义在类模板外部的成员函数必须以关键字template开始，后接类模板参数列表
+ * template <typename T>
+ * ret-type Foo<T>::member-name(parm-list)
 */
 
 //以栈的实现为例
@@ -111,6 +116,5 @@ int main()
         Item item = stack.pop();
         item.print();
     }
-    
     return 0;
 }
