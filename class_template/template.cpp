@@ -100,6 +100,27 @@ private:
     int m_id;
 };
 
+template<class T1, class T2>
+class Pair
+{
+public:
+    //关键字
+    T1 key;
+    //值
+    T2 value;
+    Pair(T1 k, T2 v) : key(k), value(v){}
+    bool operator < (const Pair<T1, T2>& p) const;
+};
+
+//类模板成员函数类外实现的固定格式
+// template<模板参数...>
+//返回值 模板名<模板参数...>::成员函数名(形参列表)
+template<class T1, class T2>
+bool Pair<T1, T2>::operator<(const Pair<T1, T2>& p) const
+{
+    cout << "my value:" << this->value << " other value:" << p.value << endl;
+    return this->value < p.value;
+}
 
 int main()
 {
@@ -116,5 +137,23 @@ int main()
         Item item = stack.pop();
         item.print();
     }
+
+    cout << endl;
+
+    Pair<string, int> student1("Tom", 20);
+    Pair<string, int> student2("Jack", 18);
+    Pair<string, int> student3("jeff", 22);
+    cout << student1.key << " " << student1.value << endl;
+    cout << student2.key << " " << student2.value << endl;
+    cout << student3.key << " " << student3.value << endl;
+
+
+    bool result = student1 < student2;
+    cout << result << endl;
+
+    result = student1 < student3;
+    cout << result << endl;
+
+
     return 0;
 }
